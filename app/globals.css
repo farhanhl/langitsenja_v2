@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Design tokens Langit Senja */
+  --clr-sunset:   #E8743B;
+  --clr-brick:    #A23B2A;
+  --clr-cream:    #F5E9D3;
+  --clr-dark:     #2B1D14;
+  --clr-leaf:     #4F7A3A;
+  --clr-yellow:   #F2B632;
+  --clr-sky1:     #FF6B35;
+  --clr-sky2:     #C0392B;
+  --clr-sky3:     #8E44AD;
+
+  --font-display: var(--font-display);
+  --font-body:    var(--font-body);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-sunset: var(--clr-sunset);
+  --color-brick:  var(--clr-brick);
+  --color-cream:  var(--clr-cream);
+  --color-dark:   var(--clr-dark);
+  --color-leaf:   var(--clr-leaf);
+  --color-yellow: var(--clr-yellow);
+  --font-sans:    var(--font-body);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body, sans-serif);
+  background-color: var(--clr-dark);
+  color: var(--clr-cream);
+  -webkit-font-smoothing: antialiased;
 }
+
+/* Utility: plang/spanduk heading */
+.font-display {
+  font-family: var(--font-display, sans-serif);
+  letter-spacing: 0.02em;
+}
+
+/* Animasi senja bergerak */
+@keyframes cloud-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(40px); }
+}
+
+@keyframes float-title {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+
+/* Tombol utama gaya plang */
+.btn-plang {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.75rem;
+  border-radius: 4px;
+  border: 2.5px solid var(--clr-dark);
+  box-shadow: 3px 3px 0 var(--clr-dark);
+  font-family: var(--font-display, sans-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform 80ms ease, box-shadow 80ms ease;
+  text-decoration: none;
+}
+
+.btn-plang:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--clr-dark);
+}
+
+.btn-primary {
+  background: var(--clr-sunset);
+  color: var(--clr-dark);
+}
+
+.btn-primary:hover {
+  background: #D6632A;
+}
+
+.btn-secondary {
+  background: var(--clr-cream);
+  color: var(--clr-dark);
+}
+
+.btn-secondary:hover {
+  background: #E8D9BE;
+}
+
+/* HUD tipografi */
+.hud-timer {
+  font-family: var(--font-display, sans-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--clr-yellow);
+  text-shadow: 1px 1px 0 var(--clr-dark), -1px -1px 0 var(--clr-dark);
+}
+
+/* Dialog balon */
+.dialog-bubble {
+  background: var(--clr-cream);
+  color: var(--clr-dark);
+  border: 2.5px solid var(--clr-dark);
+  border-radius: 6px;
+  box-shadow: 4px 4px 0 var(--clr-dark);
+  padding: 1rem 1.25rem;
+}
+
+/* Scrollbar custom senja */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--clr-dark); }
+::-webkit-scrollbar-thumb { background: var(--clr-sunset); border-radius: 3px; }
